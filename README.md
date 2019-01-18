@@ -1,32 +1,32 @@
-# react-native-ckeditor
+# react-native-trix
 
-#### React Native CKEditor component with no native code for React Native apps built using WebView
+#### React Native Trix editor component with no native code for React Native apps built using WebView
 
 ## Installation
 
 ```
-yarn add react-native-ckeditor
+yarn add react-native-trix
 ```
 
 or
 
 ```
-npm install --save react-native-ckeditor
+npm install --save react-native-trix
 ```
 
 and then
 
 ```jsx harmony
-import CKEditor from 'react-native-ckeditor';
+import CKEditor from 'react-native-tix';
 ```
 
 ## Usage
 
-Creating a CKEditor.js editor:
+Creating a Trix editor:
 
 
 ```jsx harmony
-<CKEditor
+<Trix
   content={values.description}
   onChange={value => {
     setFieldValue('description', value);
