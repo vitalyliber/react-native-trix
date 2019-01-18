@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>CKEditor</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.0.0/trix.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.0.0/trix.js"></script>
+    <script>
+      document.addEventListener("message", function(data) {
+        console.log(data.data);
+        let element = document.querySelector("trix-editor");
+        element.editor.setSelectedRange([0, 0]);
+        element.editor.insertHTML(data.data);
+      });
+      document.addEventListener("resize", function(data) {
+        let height = document.documentElement.getBoundingClientRect().height;
+        try {
+          let editor = document.getElementsByClassName('trixxx')[0];
+          window.postMessage(JSON.stringify({ type: 'LOG', value: height }), '*')
+          if (editor !== undefined) {
+            editor.style.maxHeight = `${height * 0.8}px`;
+          }
+        }
+        catch(e) {
+          alert(e)
+        }
+      });
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1.0">
+    <style>
+        /*trix-toolbar {*/
+            /*position: -webkit-sticky;*/
+            /*position: sticky;*/
+            /*top: -0.1rem;*/
+            /*font-family: sans-serif;*/
+            /*background-color: #fff;*/
+            /*z-index: 10;*/
+            /*padding: 1em 0;*/
+        /*}*/
+        trix-editor {
+            overflow-y: auto;
+            /*max-height: 300px;*/
+        }
+        trix-toolbar {
+            margin-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+<trix-editor autofocus class="trixxx" toolbar="toolbar"></trix-editor>
+<trix-toolbar id="toolbar"></trix-toolbar>
+<script>
+  // CKEDITOR.replace('editor1', {
+  //   on: {
+  //     'instanceReady': function (evt) { evt.editor.execCommand('maximize'); }
+  //   }
+  // });
+  // CKEDITOR.instances.editor1.on('change', function() {
+  //   // alert('fuck')
+  //
+  //   try {
+  //     window.postMessage(CKEDITOR.instances.editor1.getData(), '*')
+  //   }
+  //
+  //   catch (e) {
+  //     alert(e)
+  //   }
+  // });
+</script>
+</body>
+
+</html>
